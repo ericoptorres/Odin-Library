@@ -10,7 +10,45 @@
 </head>
 <body>
 
-    
+    <div class="header">
+         Personal Library
+    </div>
+    <div class="main-content">
+        <div class="add-line">
+            <div class="buttons visible hidden">
+                <button class="">+</button>
+                <p class="">Add Book</p>
+            </div>
+
+            <form class="form hidden">  
+                <input type="text" id="title" placeholder="Tittle">
+                <input type="text" id='author' placeholder="Author">
+                <input type="number" id="pages" placeholder="Pages">
+                <fieldset>
+                    <legend>Read book?</legend>
+                    <label for="yes">
+                        <input type="radio" id="yes" name="read" value="yes">
+                        <span>Yes</span>
+                    </label>
+                    <label for="no">
+                        <input type="radio" id="no" name="read" value="no">
+                        <span>No</span>
+                    </label>
+                    <div>
+                        <input type="submit" value="Submit" class="submit">
+                    </div>
+                    
+                        
+                    
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="board">
+
+        </div>
+    </div>
+
     
 </body>
 </html>
