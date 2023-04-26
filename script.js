@@ -7,6 +7,7 @@ function Book(name, author, pages, haveRead) {
     this.haveRead = haveRead
 }
 
+
 const bookOne = new Book('Harry Potter (1)', 'J.K. Rowling', 223, true)
 const bookTwo = new Book('A Game of Thrones', 'George R. R. Martin', 694, true)
 
@@ -32,43 +33,61 @@ function addBookToLibrary(){
 
 const board = document.querySelector('.board')
 
+let display = () => {
+    library.forEach((book, index)  => {
+            const card = document.createElement('div')
 
+            const button = document.createElement('button')
+            button.classList.add('remove-button')
+            button.textContent = 'X'
+            button.addEventListener('click', function(){
+                removeCard(index)
+                display()
+            })
+            card.appendChild(button)
 
-let display = () => library.map((book, index) => {
+            const para = document.createElement('p')
+            para.textContent = `${book.name} by ${book.author}.`
+            card.appendChild(para)
+            
+            const pages = document.createElement('p')
+            pages.textContent = `${book.pages} pages.`
+            card.appendChild(pages)
+
+ 
+
+            card.classList.add('book')
+
+            
+            const newDiv = document.createElement('div')
+            const newPara = document.createElement('p')
+            newPara.textContent = 'Read status:'
+            const changeButton = document.createElement('button')
+            changeButton.classList.add('change-button')
+            changeButton.addEventListener('click', function(){
+                changeReadStatus(index)
+                display()
+            })
+            if(book.haveRead == true){
+                changeButton.style = 'background-color: green'
+            }
+            else{
+                changeButton.style = 'background-color: red'
+            }
+
+            newDiv.appendChild(newPara)
+            newDiv.appendChild(changeButton)
+
+            card.appendChild(newDiv)
+            
+
+            board.appendChild(card)
+        }
+    )
     
-    const card = document.createElement('div')
-
-    const para = document.createElement('p')
-    para.textContent = `${book.name} by ${book.author}.`
-    card.appendChild(para)
-    
-    const pages = document.createElement('p')
-    pages.textContent = `${book.pages} pages.`
-    card.appendChild(pages)
-
-    const haveRead = document.createElement('div')
-    haveRead.textContent = book.haveRead
-    card.appendChild(haveRead)
-
-    card.classList.add('book')
-
-    const button = document.createElement('button')
-    button.classList.add('remove-button')
-    button.textContent = 'X'
-    card.appendChild(button)
-
-    card.dataset.position = index
-
-
-    board.appendChild(card)
-
-   
-})
-
+}
 
 display()
-removeCard()
-
 
 
 const form = document.querySelector('form')
@@ -92,7 +111,6 @@ submit.addEventListener('click', function(e){
     clearForm()
     form.classList.toggle('hidden')
     buttons.classList.toggle('visible')
-    removeCard()
 })
 
 
@@ -110,20 +128,19 @@ const getReadValue = () => {
 
 
 
- function removeCard(){
-    const removeButton = document.querySelectorAll('.remove-button')
-    removeButton.forEach(button => {
-       button.addEventListener('click', function(){
-       library.splice(parseInt(this.parentElement.dataset.position), 1)
-       board.textContent = ''
-       alert('working')
-       display()
-       removeCard()
-    })
-})
-
- }  
-
-
-
+ function removeCard(index){
+    library.splice(index, 1)
+    board.innerHTML = ''
+    
+ }
+   
+function changeReadStatus(index){
+    if (library[index].haveRead == true){
+        library[index].haveRead = false
+    }
+    else{
+        library[index].haveRead = true
+    }
+    board.innerHTML = ''
+}
 

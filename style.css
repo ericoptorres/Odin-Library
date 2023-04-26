@@ -85,4 +85,18 @@ form{
     height: 25px;
     width: 25px;
     border-radius: 50%;
+    align-self: flex-end;
+}
+
+.change-button{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.book div{
+    display: flex;
+    gap: 10px;
+    align-content: center;
 }
