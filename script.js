@@ -1,11 +1,23 @@
 let library = []
 
-function Book(name, author, pages, haveRead) {
+/*function Book(name, author, pages, haveRead) {
     this.name = name
     this.author = author
     this.pages = pages
     this.haveRead = haveRead
 }
+*/
+
+class Book {
+    constructor(name, author, pages, haveRead){
+        this.name = name
+        this.author = author
+        this.pages = pages
+        this.haveRead = haveRead
+    }
+}
+
+
 
 
 const bookOne = new Book('Harry Potter (1)', 'J.K. Rowling', 223, true)
@@ -143,4 +155,6 @@ function changeReadStatus(index){
     }
     board.innerHTML = ''
 }
+
+
 
